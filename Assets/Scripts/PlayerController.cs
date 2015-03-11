@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     {
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
-
     }
 
     void FixedUpdate()
@@ -20,5 +19,16 @@ public class PlayerController : MonoBehaviour
         Vector3 mov = new Vector3(hAxis, 0f, vAxis);
         
         GetComponent<Rigidbody>().AddForce(mov * speed * Time.deltaTime);
+        
+        
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "pickup")
+        {
+            //other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
+        }
     }
 }
